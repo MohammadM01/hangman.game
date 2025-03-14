@@ -1,0 +1,255 @@
+/* This line imports the Open Sans font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+/* Basic reset: removes default margins, padding and sets box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+}
+
+/* Centers everything on the page and sets purple background */
+body {
+    display: flex;
+    padding: 0 10px;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #5E63BA;
+}
+
+/* Main white box that holds the game */
+.container {
+    display: flex;
+    width: 850px;
+    gap: 70px;
+    padding: 60px 40px;
+    background: #fff;
+    border-radius: 10px;
+    align-items: flex-end;
+    justify-content: space-between;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Controls the hangman image size and prevents selection */
+.hangman-box img {
+    user-select: none;
+    max-width: 270px;
+}
+
+/* Styles for the game title */
+.hangman-box h1 {
+    font-size: 1.45rem;
+    text-align: center;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+/* Container for the word display (the dashes and letters) */
+.game-box .word-display {
+    gap: 10px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styles each letter box in the word display */
+.word-display .letter {
+    width: 28px;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #000;
+}
+
+/* Styles for correctly guessed letters */
+.word-display .letter.guessed {
+    margin: -40px 0 35px;
+    border-color: transparent;
+}
+
+/* Styles for game information text */
+.game-box h4 {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+/* Makes certain text elements bold */
+.game-box h4 b {
+    font-weight: 600;
+}
+
+/* Makes the remaining guesses number red */
+.game-box .guesses-text b {
+    color: #ff0000;
+}
+
+/* Styles the keyboard layout */
+.game-box .keyboard {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    justify-content: center;
+}
+
+/* Common styles for all buttons in the game */
+:where(.game-modal, .keyboard) button {
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background: #5E63BA;
+}
+
+/* Sets the size for keyboard buttons */
+.keyboard button {
+    padding: 7px;
+    width: calc(100% / 9 - 5px);
+}
+
+/* Styles for disabled keyboard buttons */
+.keyboard button[disabled] {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Button hover effect */
+:where(.game-modal, .keyboard) button:hover {
+    background: #8286c9;
+}
+
+/* Styles for the win/lose popup modal */
+.game-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 0 10px;
+    transition: opacity 0.4s ease;
+}
+
+/* Shows the modal when needed */
+.game-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.4s 0.4s ease;
+}
+
+/* Styles for the modal content box */
+.game-modal .content {
+    padding: 30px;
+    max-width: 420px;
+    width: 100%;
+    border-radius: 10px;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Controls the size of images in the modal */
+.game-modal img {
+    max-width: 130px;
+    margin-bottom: 20px;
+}
+
+/* Adjusts the victory gif position */
+.game-modal img[src="images/victory.gif"] {
+    margin-left: -10px;
+}
+
+/* Styles for the modal heading */
+.game-modal h4 {
+    font-size: 1.53rem;
+}
+
+/* Styles for the modal message */
+.game-modal p {
+    font-size: 1.15rem;
+    margin: 15px 0 30px;
+    font-weight: 500;
+}
+
+/* Styles for bold text in modal message */
+.game-modal p b {
+    color: #5E63BA;
+    font-weight: 600;
+}
+
+/* Styles for the modal button */
+.game-modal button {
+    padding: 12px 23px;
+}
+
+/* Mobile responsive styles for screens smaller than 782px */
+@media (max-width: 782px) {
+    /* Makes the container stack vertically on small screens */
+    .container {
+        flex-direction: column;
+        padding: 30px 15px;
+        align-items: center;
+    }
+    
+    /* Makes the hangman image smaller */
+    .hangman-box img {
+        max-width: 200px;
+    }
+    
+    /* Hides the title on mobile */
+    .hangman-box h1 {
+        display: none;
+    }
+    
+    /* Reduces text size on mobile */
+    .game-box h4 {
+        font-size: 1rem;
+    }
+    
+    /* Adjusts letter spacing and size for mobile */
+    .word-display .letter {
+        margin-bottom: 35px;
+        font-size: 1.7rem;
+    }
+    
+    /* Adjusts guessed letter spacing for mobile */
+    .word-display .letter.guessed {
+        margin: -35px 0 25px;
+    }
+    
+    /* Makes modal images smaller on mobile */
+    .game-modal img {
+        max-width: 120px;
+    }
+    
+    /* Reduces modal text sizes on mobile */
+    .game-modal h4 {
+        font-size: 1.45rem;
+    }
+    .game-modal p {
+        font-size: 1.1rem;
+    }
+    
+    /* Makes modal button smaller on mobile */
+    .game-modal button {
+        padding: 10px 18px;
+    }
+}
